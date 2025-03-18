@@ -43,6 +43,15 @@ public:
 
     // virtual void operator=
 
+    virtual T &operator[](int index) = 0;
+
+    bool operator==(Sequence &);
+
+    // char* toString();
+
+    // virtual T &operator[](int index) = 0;
+
+
 private:
     virtual Sequence *clone() =0;
 
@@ -60,5 +69,9 @@ Sequence<T> *where(bool F(T), Sequence<T> *seq);
 
 template<class T>
 T reduce(T F(T, T), Sequence<T> *seq, T start);
+
+template<class T>
+int len(Sequence<T> &seq);
+
 
 #endif

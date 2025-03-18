@@ -3,8 +3,8 @@
 template<class T>
 Sequence<T> *Sequence<T>::concat(Sequence &seq) {
     Sequence *result = instance();
-    for(int i = 0; i < seq.getSize(); i++) {
-        result->inAppend(seq.get(i));
+    for (int i = 0; i < seq.getSize(); i++) {
+        result->inAppend(seq[i]);
     }
     return result;
 }
@@ -13,10 +13,10 @@ Sequence<T> *Sequence<T>::concat(Sequence &seq) {
 template<class T>
 Sequence<T> *concat(Sequence<T> *s1, Sequence<T> *s2) {
     Sequence<T> *result = s1->construct();
-    for(int i = 0; i < s1->getSize(); i++) {
+    for (int i = 0; i < s1->getSize(); i++) {
         result->inAppend(s1->get(i));
     }
-    for(int i = 0; i < s2->getSize(); i++) {
+    for (int i = 0; i < s2->getSize(); i++) {
         result->inAppend(s2->get(i));
     }
     return result;
@@ -49,6 +49,20 @@ T reduce(T F(T, T), Sequence<T> *seq, T start) {
     for (int i = 1; i < seq->getSize(); i++) {
         result = F(seq->get(i), result);
     }
-
     return result;
+}
+
+
+template<class T>
+int len(Sequence<T> &seq) {
+    return seq.getSize();
+}
+
+template<class T>
+bool Sequence<T>::operator==(Sequence<T> &seq) {
+    if (seq.getSize() != getSize()) return false;
+    for (int i = 0; i < seq.getSize(); i++) {
+        if (get(i) != seq.get(i)) return false;
+    }
+    return true;
 }
