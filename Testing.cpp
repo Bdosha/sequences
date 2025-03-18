@@ -145,7 +145,6 @@ void testPolymorph() {
     std::cout << "Стало - на массиве ";
     ds_from_ls->print();
     std::cout << std::endl;
-
 }
 
 int del10(int a) {
@@ -161,13 +160,13 @@ void hardConcat() {
     auto all_seq = MutableArraySequence<Sequence<int> *>(new Sequence<int> *[3]{s3, s2, s1}, 3);
     std::cout << "--- Создадим 3 последовательности разных видов ---\n";
 
-    for (int i = 0; i < all_seq.getSize(); i++) all_seq[i]->print();
+    for (int i = 0; i < len(all_seq); i++) all_seq[i]->print();
 
     std::cout <<
             "Теперь добавим их всех в идиную последовательность последовательностей.\nА теперь пройдемся по ним for'ом и добавим в конец 0 и применим mod 10 через map\n";
 
 
-    for (int i = 0; i < all_seq.getSize(); i++) {
+    for (int i = 0; i < len(all_seq); i++) {
         all_seq[i]->append(0);
         all_seq[i] = map(del10, all_seq[i]);
         all_seq[i]->print();
@@ -180,6 +179,28 @@ void hardConcat() {
 }
 
 
+void testOperators() {
+    std::cout << "--- Проверка работы операторов ---\n";
+
+    auto array = MutableArraySequence(new int[5]{1, 2, 3, 4, 5}, 5);
+    Sequence<int> *s2 = new ListSequence(new int[5]{1, 2, 3, 4, 5}, 5);
+    auto s3 = ListSequence(new int[5]{1, 2, 9, 4, 5}, 5);
+
+    std::cout << "Изначальные последовательности:\n";
+    std::cout << "1) MutableArraySequence "; array.print();
+    std::cout << "2) ListSequence * "; s2->print();
+    std::cout << "3) ListSequence "; s3.print();
+
+    std::cout <<  std::endl;
+
+    std::cout << "Элемент массива 3 индекс " << array[3] << std::endl;
+    std::cout << "Элемент массива -4 индекс " << array[-4] << std::endl;
+    std::cout << "Равны ли 1 и 3? " << (array == s3) << std::endl;
+    std::cout << "Равны ли 1 и 2? " << (array == *s2) << std::endl;
+
+    std::cout <<  std::endl;
+}
+
 void mainTest() {
     testLinkedList();
     testMutableArray();
@@ -187,4 +208,5 @@ void mainTest() {
     testMore();
     testPolymorph();
     hardConcat();
+    testOperators();
 }
