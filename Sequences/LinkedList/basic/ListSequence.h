@@ -8,7 +8,7 @@ class ListSequence : public Sequence<T> {
 public:
     explicit ListSequence(LinkedList<T>);
 
-    explicit ListSequence(Sequence<T>&);
+    explicit ListSequence(Sequence<T> &);
 
     ListSequence();
 
@@ -16,12 +16,11 @@ public:
 
     ~ListSequence() override;
 
-    T& getFirst() override;
+    T &getFirst() override;
 
-    T& getLast() override;
+    T &getLast() override;
 
-    T& get(int) override;
-    T& operator[](int index) const;
+    T &get(int) override;
 
 
     int getSize() override;
@@ -42,6 +41,11 @@ public:
     Sequence<T> *construct() override {
         return new ListSequence();
     }
+
+    T &operator[](int index) override;
+
+
+
     Sequence<T> *set(int index, T value) override;
 
 private:

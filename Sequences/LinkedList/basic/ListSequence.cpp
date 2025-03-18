@@ -1,7 +1,5 @@
 #include "ListSequence.h"
 
-#include <list>
-
 
 template<class T>
 void ListSequence<T>::init() {
@@ -12,6 +10,7 @@ template<class T>
 void ListSequence<T>::print() {
     list->print();
 }
+
 template<class T>
 ListSequence<T>::ListSequence(Sequence<T> &other) {
     list = new LinkedList<T>();
@@ -127,6 +126,16 @@ Sequence<T> *ListSequence<T>::inSet(int index, T item) {
 
 
 template<class T>
-Sequence<T> * ListSequence<T>::set(int index, T value) {
+Sequence<T> *ListSequence<T>::set(int index, T value) {
     return instance()->inSet(index, value);
 }
+
+
+
+template<class T>
+T &ListSequence<T>::operator[](int index) {
+    if (-index > getSize()) throw std::out_of_range("index out of range");
+    if (index < 0) index += getSize();
+    return get(index);
+}
+
