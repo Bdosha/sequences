@@ -130,8 +130,9 @@ void LinkedList<T>::prepend(T item) {
 
 template<class T>
 void LinkedList<T>::getSubList(int startIndex, int endIndex) {
-    if (check_index(startIndex) || check_index(endIndex) || startIndex > endIndex) throw std::out_of_range(
-        "index out of range");
+    if (check_index(startIndex) || check_index(endIndex) || startIndex > endIndex)
+        throw std::out_of_range(
+            "index out of range");
 
     Node<T> *current = getP(startIndex);
     T *newData = new T[endIndex - startIndex + 1];

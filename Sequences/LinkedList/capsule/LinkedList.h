@@ -13,13 +13,13 @@ public:
 
     ~LinkedList();
 
-    T& getFirst();
+    T &getFirst();
 
-    T& getLast();
+    T &getLast();
 
-    T& get(int index);
+    T &get(int index);
 
-    T& operator[](int index);
+    T &operator[](int index);
 
 
     void getSubList(int startIndex, int endIndex);
@@ -35,8 +35,8 @@ public:
     void print();
 
     LinkedList *concat(LinkedList *list);
-    void set(int index, T value);
 
+    void set(int index, T value);
 
 private:
     Node<T> *head;
