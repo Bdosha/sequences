@@ -14,9 +14,9 @@ public:
 
     ~DynamicArray();
 
-    T& get(int index) const;
+    T &get(int index) const;
 
-    T& operator[](int index) const;
+    T &operator[](int index) const;
 
     unsigned int getSize() const;
 
