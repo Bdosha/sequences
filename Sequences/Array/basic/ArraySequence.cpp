@@ -28,17 +28,17 @@ ArraySequence<T>::ArraySequence::ArraySequence(T *items, int count) {
 
 
 template<class T>
-T& ArraySequence<T>::get(int index) {
+T &ArraySequence<T>::get(int index) {
     return list->get(index);
 }
 
 template<class T>
-T& ArraySequence<T>::getFirst() {
+T &ArraySequence<T>::getFirst() {
     return list->get(0);
 }
 
 template<class T>
-T& ArraySequence<T>::getLast() {
+T &ArraySequence<T>::getLast() {
     return list->get(list->getSize() - 1);
 }
 
@@ -130,5 +130,10 @@ Sequence<T> *ArraySequence<T>::set(int index, T value) {
 
 template<class T>
 T &ArraySequence<T>::operator[](int index) {
-    return list->get(index);
+    if (-index > getSize()) throw std::out_of_range("index out of range");
+    if (index < 0) index += getSize();
+    return get(index);
 }
+
+
+

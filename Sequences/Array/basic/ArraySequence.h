@@ -15,13 +15,18 @@ public:
 
     ArraySequence(T *items, int count);
 
-    T& getFirst() override;
+    T &getFirst() override;
 
-    T& getLast() override;
+    T &getLast() override;
 
-    T& get(int index) override;
-    T& operator[](int index);
-    // T& operator[](int);
+    T &get(int index) override;
+
+    T &operator[](int index) override;
+
+
+
+
+    // T &operator[](const int);
 
 
     int getSize() override;
